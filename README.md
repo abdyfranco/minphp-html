@@ -9,7 +9,7 @@ HTML helper.
 Install via composer:
 
 ```sh
-composer install minphp/html:dev-master
+composer require minphp/html:dev-master
 ```
 
 ## Basic Usage
