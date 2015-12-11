@@ -1,15 +1,16 @@
 <?php
-namespace minphp\Html;
+namespace Minphp\Html\Tests;
 
-use \PHPUnit_Framework_TestCase;
+use PHPUnit_Framework_TestCase;
+use Minphp\Html\Html;
 
 /**
- * @coversDefaultClass \minphp\Html\Html
+ * @coversDefaultClass \Minphp\Html\Html
  */
 class HtmlTest extends PHPUnit_Framework_TestCase
 {
     public function testConstruct()
     {
-        $this->assertInstanceOf('\minphp\Html\Html', new Html());
+        $this->assertInstanceOf('\Minphp\Html\Html', new Html());
     }
 }
