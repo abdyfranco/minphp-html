@@ -19,6 +19,9 @@
         "satooshi/php-coveralls": "dev-master"
     },
     "autoload": {
-        "psr-4": {"minphp\\Html\\": "src"}
+        "psr-4": {"Minphp\\Html\\": "src"}
+    },
+    "autoload-dev": {
+        "psr-4": {"Minphp\\Html\\Tests\\": "tests"}
     }
 }
