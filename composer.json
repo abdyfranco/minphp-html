@@ -16,7 +16,10 @@
     "require-dev": {
         "phpunit/phpunit": "~4.0",
         "squizlabs/php_codesniffer": "~2.2",
-        "satooshi/php-coveralls": "dev-master"
+        "satooshi/php-coveralls": "~1.0"
+    },
+    "suggest": {
+        "ext-mbstring": "May increase performance encoding characters"
     },
     "autoload": {
         "psr-4": {"Minphp\\Html\\": "src"}
