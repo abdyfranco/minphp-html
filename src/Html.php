@@ -17,13 +17,14 @@ class Html
      * @param string $str The string to print, if it exists
      * @param boolean $return True to return the result as a string, else echo the result
      * @param boolean $preserve_tags True to preserve tags
+     * @param boolean $preserve_accents True to preserve accents and tildes
      * @return string The result (if $return is set to true)
      */
     // @codingStandardsIgnoreStart
-    public function _(&$str, $return = false, $preserve_tags = false)
+    public function _(&$str, $return = false, $preserve_tags = false, $preserve_accents = false)
     {
         // @codingStandardsIgnoreEnd
-        $result = (isset($str) ? $this->safe($str, $preserve_tags) : "");
+        $result = (isset($str) ? $this->safe($str, $preserve_tags, $preserve_accents) : "");
         if ($return) {
             return $result;
         }
@@ -179,7 +180,7 @@ class Html
                 if (is_array($value)) {
                     $value = implode($glue, $value);
                 }
-                $html .= " " . $this->_($key, true) . "=\"" . $this->_($value, true) . "\"";
+                $html .= " " . $this->_($key, true) . "=\"" . $this->_($value, true, false, true) . "\"";
             }
         }
 
