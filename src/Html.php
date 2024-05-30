@@ -35,10 +35,10 @@ class Html
      *
      * @param string $str The string to make HTML safe
      * @param boolean $preserve_tags True to preserve tags
-     * @param boolean $preserve_accents True to preserve tags
+     * @param boolean $preserve_accents True to preserve accents and tildes
      * @return string The string in HTML safe format
      */
-    public function safe($str, $preserve_tags = false, $preserve_accents = true)
+    public function safe($str, $preserve_tags = false, $preserve_accents = false)
     {
         if (!$this->isUtf8($str)) {
             $str = utf8_encode($str);
