@@ -17,13 +17,14 @@ class Html
      * @param string $str The string to print, if it exists
      * @param boolean $return True to return the result as a string, else echo the result
      * @param boolean $preserve_tags True to preserve tags
+     * @param boolean $preserve_accents True to preserve accents and tildes
      * @return string The result (if $return is set to true)
      */
     // @codingStandardsIgnoreStart
-    public function _(&$str, $return = false, $preserve_tags = false)
+    public function _(&$str, $return = false, $preserve_tags = false, $preserve_accents = false)
     {
         // @codingStandardsIgnoreEnd
-        $result = (isset($str) ? $this->safe($str, $preserve_tags) : "");
+        $result = (isset($str) ? $this->safe($str, $preserve_tags, $preserve_accents) : "");
         if ($return) {
             return $result;
         }
@@ -35,9 +36,10 @@ class Html
      *
      * @param string $str The string to make HTML safe
      * @param boolean $preserve_tags True to preserve tags
+     * @param boolean $preserve_accents True to preserve accents and tildes
      * @return string The string in HTML safe format
      */
-    public function safe($str, $preserve_tags = false)
+    public function safe($str, $preserve_tags = false, $preserve_accents = false)
     {
         if (!$this->isUtf8($str)) {
             $str = utf8_encode($str);
@@ -48,6 +50,28 @@ class Html
         if ($preserve_tags) {
             $str = str_replace(array("&lt;", "&gt;", "&quot;", "&#039;"), array("<", ">", "\"", "'"), $str);
         }
+
+        if ($preserve_accents) {
+            $accents = array(
+                'a' => array('á' => '&aacute;', 'à' => '&agrave;', 'â' => '&acirc;', 'ä' => '&auml;'),
+                'e' => array('é' => '&eacute;', 'è' => '&egrave;', 'ê' => '&ecirc;', 'ë' => '&euml;'),
+                'i' => array('í' => '&iacute;', 'ì' => '&igrave;', 'î' => '&icirc;', 'ï' => '&iuml;'),
+                'o' => array('ó' => '&oacute;', 'ò' => '&ograve;', 'ô' => '&ocirc;', 'ö' => '&ouml;'),
+                'u' => array('ú' => '&uacute;', 'ù' => '&ugrave;', 'û' => '&ucirc;', 'ü' => '&uuml;'),
+                'ñ' => array('ñ' => '&ntilde;'),
+                'A' => array('Á' => '&Aacute;', 'À' => '&Agrave;', 'Â' => '&Acirc;', 'Ä' => '&Auml;'),
+                'E' => array('É' => '&Eacute;', 'È' => '&Egrave;', 'Ê' => '&Ecirc;', 'Ë' => '&Euml;'),
+                'I' => array('Í' => '&Iacute;', 'Ì' => '&Igrave;', 'Î' => '&Icirc;', 'Ï' => '&Iuml;'),
+                'O' => array('Ó' => '&Oacute;', 'Ò' => '&Ograve;', 'Ô' => '&Ocirc;', 'Ö' => '&Ouml;'),
+                'U' => array('Ú' => '&Uacute;', 'Ù' => '&Ugrave;', 'Û' => '&Ucirc;', 'Ü' => '&Uuml;'),
+                'Ñ' => array('Ñ' => '&Ntilde;')
+            );
+
+            foreach ($accents as $replacements) {
+                $str = str_replace(array_values($replacements), array_keys($replacements), $str);
+            }
+        }
+
         return $str;
     }
 
@@ -156,7 +180,7 @@ class Html
                 if (is_array($value)) {
                     $value = implode($glue, $value);
                 }
-                $html .= " " . $this->_($key, true) . "=\"" . $this->_($value, true) . "\"";
+                $html .= " " . $this->_($key, true) . "=\"" . $this->_($value, true, false, true) . "\"";
             }
         }
 
