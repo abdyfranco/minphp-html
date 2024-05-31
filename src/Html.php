@@ -41,8 +41,16 @@ class Html
      */
     public function safe($str, $preserve_tags = false, $preserve_accents = false)
     {
+        if (empty($str)) {
+            return $str;
+        }
+
         if (!$this->isUtf8($str)) {
-            $str = utf8_encode($str);
+            if (function_exists('mb_convert_encoding')) {
+                $str = mb_convert_encoding($str, 'UTF-8', mb_list_encodings());
+            } else {
+                $str = utf8_encode($str);
+            }
         }
 
         $str = htmlentities($str, ENT_QUOTES, "UTF-8");
