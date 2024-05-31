@@ -58,13 +58,13 @@ class Html
                 'i' => array('í' => '&iacute;', 'ì' => '&igrave;', 'î' => '&icirc;', 'ï' => '&iuml;'),
                 'o' => array('ó' => '&oacute;', 'ò' => '&ograve;', 'ô' => '&ocirc;', 'ö' => '&ouml;'),
                 'u' => array('ú' => '&uacute;', 'ù' => '&ugrave;', 'û' => '&ucirc;', 'ü' => '&uuml;'),
-                'ñ' => array('ú' => '&ntilde;'),
+                'ñ' => array('ñ' => '&ntilde;'),
                 'A' => array('Á' => '&Aacute;', 'À' => '&Agrave;', 'Â' => '&Acirc;', 'Ä' => '&Auml;'),
                 'E' => array('É' => '&Eacute;', 'È' => '&Egrave;', 'Ê' => '&Ecirc;', 'Ë' => '&Euml;'),
                 'I' => array('Í' => '&Iacute;', 'Ì' => '&Igrave;', 'Î' => '&Icirc;', 'Ï' => '&Iuml;'),
                 'O' => array('Ó' => '&Oacute;', 'Ò' => '&Ograve;', 'Ô' => '&Ocirc;', 'Ö' => '&Ouml;'),
                 'U' => array('Ú' => '&Uacute;', 'Ù' => '&Ugrave;', 'Û' => '&Ucirc;', 'Ü' => '&Uuml;'),
-                'Ñ' => array('Ú' => '&Ntilde;')
+                'Ñ' => array('Ñ' => '&Ntilde;')
             );
 
             foreach ($accents as $replacements) {
