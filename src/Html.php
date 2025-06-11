@@ -53,7 +53,7 @@ class Html
             }
         }
 
-        $str = htmlentities($str, ENT_QUOTES, "UTF-8");
+        $str = htmlentities($str, ENT_QUOTES, "UTF-8", false);
 
         if ($preserve_tags) {
             $str = str_replace(array("&lt;", "&gt;", "&quot;", "&#039;"), array("<", ">", "\"", "'"), $str);
